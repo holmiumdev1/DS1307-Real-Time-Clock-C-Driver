@@ -18,7 +18,8 @@ void time_i2c_write_single(uint8_t device_address, uint8_t register_address, uin
 /*function to transmit an array of data to device_address, starting from start_register_address*/
 void time_i2c_write_multi(uint8_t device_address, uint8_t start_register_address, uint8_t *data_array, uint8_t data_length)
 {
-    uint8_t array[data_length + 1] = {0};
+    uint8_t array[data_length + 1];
+    memset(&array[0],0,data_length+1);
     array[0] = start_register_address;
     memcpy(&array[1],data_array,data_length);
     i2c_master_write_to_device(I2C_NUM_0, device_address,
@@ -32,17 +33,18 @@ void time_i2c_read_single(uint8_t device_address, uint8_t register_address, uint
     i2c_master_write_read_device(I2C_NUM_0, device_address,
                                        &register_address, 1,
                                        data_byte, 1,
-                                       pdMS_TO_TICKS(1000))
+                                       pdMS_TO_TICKS(1000));
                                       
 }
 
 /*function to read an array of data from device_address*/
 void time_i2c_read_multi(uint8_t device_address, uint8_t start_register_address, uint8_t *data_array, uint8_t data_length)
 {
+    memset(&data_length[0],0,data_length+1);
     i2c_master_write_read_device(I2C_NUM_0, device_address,
                                        &start_register_address, 1,
                                        data_array, data_length,
-                                       pdMS_TO_TICKS(1000))
+                                       pdMS_TO_TICKS(1000));
 }
 
 /*function to initialize I2C peripheral in 100khz*/

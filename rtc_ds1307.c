@@ -326,15 +326,15 @@ uint8_t DS1307_square_wave(uint8_t input)
       return OPERATION_DONE;
     case WAVE_2:
       register_new_value = 0X11;
-      time_i2c_write_single(DS1307_I2C_ADDRESS, DS1307_REGISTER_CONTROL, &register_new_value);
+      time_i2c_write_single(DS1307_I2C_ADDRESS, DS1307_REGISTER_CONTROL, register_new_value);
       return OPERATION_DONE;
     case WAVE_3:
       register_new_value = 0X12;
-      time_i2c_write_single(DS1307_I2C_ADDRESS, DS1307_REGISTER_CONTROL, &register_new_value);
+      time_i2c_write_single(DS1307_I2C_ADDRESS, DS1307_REGISTER_CONTROL, register_new_value);
       return OPERATION_DONE;
     case WAVE_4:
       register_new_value = 0X13;
-      time_i2c_write_single(DS1307_I2C_ADDRESS, DS1307_REGISTER_CONTROL, &register_new_value);
+      time_i2c_write_single(DS1307_I2C_ADDRESS, DS1307_REGISTER_CONTROL, register_new_value);
       return OPERATION_DONE;
   }
   return OPERATION_FAILED;
@@ -349,14 +349,14 @@ void DS1307_snapshot_save()
   time_i2c_read_multi(DS1307_I2C_ADDRESS, DS1307_REGISTER_SECONDS, data_array_temporary, 7);
   time_i2c_write_multi(DS1307_I2C_ADDRESS, DS1307_SNAP0_ADDRESS, data_array_temporary, 7);
   snap0_vacancy = OCCUPIED;
-  time_i2c_write_single(DS1307_I2C_ADDRESS, DS1307_REGISTER_SNAP0_VACANCY, &snap0_vacancy);
+  time_i2c_write_single(DS1307_I2C_ADDRESS, DS1307_REGISTER_SNAP0_VACANCY, snap0_vacancy);
 }
 
 /*high level function to clear the sapshot slot on ds1307 RAM*/
 void DS1307_snapshot_clear()
 {
   snap0_vacancy = NOT_OCCUPIED;
-  time_i2c_write_single(DS1307_I2C_ADDRESS, DS1307_REGISTER_SNAP0_VACANCY, &snap0_vacancy);
+  time_i2c_write_single(DS1307_I2C_ADDRESS, DS1307_REGISTER_SNAP0_VACANCY, snap0_vacancy);
 }
 
 /*internal function related to this file and not accessible from outside*/

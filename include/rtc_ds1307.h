@@ -1,7 +1,10 @@
 /*ds1307 driver header file - Reza Ebrahimi v1.0*/
 #ifndef RTC_DS1307_H
 #define RTC_DS1307_H
-#include <stdint.h>
+#include "freertos/FreeRTOS.h"
+#include "driver/i2c.h"
+#include "string.h"
+#include "stdint.h"
 enum options {SECOND, MINUTE, HOUR, DAY_OF_WEEK, DATE, MONTH, YEAR, CONTROL, RAM, TIME, SNAPSHOT, ALL};
 enum square_wave {WAVE_OFF, WAVE_1, WAVE_2, WAVE_3, WAVE_4};
 enum ds1307_registers {

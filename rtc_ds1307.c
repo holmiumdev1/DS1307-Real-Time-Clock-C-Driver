@@ -1,7 +1,7 @@
 /*ds1307 high level api - Reza Ebrahimi v1.0*/
 /*this is mcu independent code, no need to change the contents of this file. use low level api to adapt the driver to your mcu of choice*/
-#include "rtc_ds1307.h"
-
+#include "include/rtc_ds1307.h"
+#include "freertos/FreeRTOS.h"
 static void BCD_to_HEX(uint8_t *data_array, uint8_t array_length);        /*turns the bcd numbers from ds1307 into hex*/
 static void HEX_to_BCD(uint8_t *data_array, uint8_t array_length);        /*turns the hex numbers into bcd, to be written back into ds1307*/
 
